@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓몬 2세대 전투 시뮬레이터</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- 시작 화면 (스타팅 선택) -->
+        <div id="start-screen" class="screen">
+            <h1>팀을 구성할 포켓몬 3마리를 선택하세요!</h1>
+            <div id="team-selection-status">
+                선택된 팀: <span id="selected-team-list">없음</span> (0/3)
+            </div>
+            <div class="starter-choice">
+                <button id="btn-치코리타" class="starter-btn" onclick="pickStarter('치코리타')">
+                    치코리타
+                </button>
+                <button id="btn-브케인" class="starter-btn" onclick="pickStarter('브케인')">
+                    브케인
+                </button>
+                <button id="btn-리아코" class="starter-btn" onclick="pickStarter('리아코')">
+                    리아코
+                </button>
+                <button id="btn-피카츄" class="starter-btn" onclick="pickStarter('피카츄')">
+                    피카츄
+                </button>
+            </div>
+        </div>
+
+        <!-- 로비 화면 -->
+        <div id="lobby-screen" class="hidden">
+            <h1>포켓몬 배틀 대기실</h1>
+            <div id="player-info">선택된 포켓몬: <span id="selected-starter">---</span></div>
+            <div class="lobby-controls">
+                <button onclick="createRoom()" class="menu-btn">방 만들기</button>
+                <button onclick="refreshRooms()" class="menu-btn">새로고침</button>
+            </div>
+            <div id="room-list">
+                <!-- 활성화된 방 목록이 여기에 표시됨 -->
+                <p>현재 개설된 방이 없습니다.</p>
+            </div>
+        </div>
+
+        <!-- 대기실 화면 (방 입장 후) -->
+        <div id="waiting-screen" class="hidden">
+            <h1>상대방을 기다리는 중...</h1>
+            <div class="loader"></div>
+            <p>방 ID: <span id="current-room-id">---</span></p>
+            <button onclick="leaveRoom()" class="menu-btn">나가기</button>
+        </div>
+
+        <!-- 전투 장면 -->
+        <div class="battle-scene">
+            <!-- 적 상태 -->
+            <div id="enemy-status" class="status-box">
+                <div class="name-lv">
+                    <span id="enemy-name">---</span>
+                    <span>Lv<span id="enemy-lv">0</span></span>
+                </div>
+                <div class="hp-bar-container">
+                    <div id="enemy-hp-bar" class="hp-bar-fill"></div>
+                </div>
+            </div>
+
+            <!-- 적 스프라이트 -->
+            <div id="enemy-sprite" class="sprite"></div>
+
+            <!-- 플레이어 상태 -->
+            <div id="player-status" class="status-box">
+                <div class="name-lv">
+                    <span id="player-name">---</span>
+                    <span>Lv<span id="player-lv">0</span></span>
+                </div>
+                <div class="hp-bar-container">
+                    <div id="player-hp-bar" class="hp-bar-fill"></div>
+                </div>
+                <div style="text-align: right; font-size: 0.9rem; margin-top: 5px;">
+                    <span id="player-hp-text">0/0</span>
+                </div>
+            </div>
+
+            <!-- 플레이어 스프라이트 -->
+            <div id="player-sprite" class="sprite"></div>
+        </div>
+
+        <!-- 하단 UI 영역 -->
+        <div class="ui-container">
+            <div id="message-box">
+                세상을 구하러 떠나볼까요?
+            </div>
+            <div id="menu-box" class="hidden">
+                <!-- 기술 버튼들이 여기에 동적으로 생성됨 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+{
+  "starters": [
+    {
+      "id": 152,
+      "name": "치코리타",
+      "type": ["Grass"],
+      "level": 10,
+      "stats": {
+        "hp": 29,
+        "attack": 14,
+        "defense": 18,
+        "special_attack": 14,
+        "special_defense": 18,
+        "speed": 14
+      },
+      "moves": [
+        {
+          "name": "몸통박치기",
+          "type": "Normal",
+          "category": "Physical",
+          "power": 35,
+          "accuracy": 95,
+          "pp": 35
+        },
+        {
+          "name": "울음소리",
+          "type": "Normal",
+          "category": "Status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 40,
+          "effect": "상대의 공격력을 1단계 낮춘다."
+        },
+        {
+          "name": "잎날가르기",
+          "type": "Grass",
+          "category": "Special",
+          "power": 55,
+          "accuracy": 95,
+          "pp": 25
+        }
+      ]
+    },
+    {
+      "id": 155,
+      "name": "브케인",
+      "type": ["Fire"],
+      "level": 10,
+      "stats": {
+        "hp": 27,
+        "attack": 15,
+        "defense": 13,
+        "special_attack": 17,
+        "special_defense": 15,
+        "speed": 18
+      },
+      "moves": [
+        {
+          "name": "몸통박치기",
+          "type": "Normal",
+          "category": "Physical",
+          "power": 35,
+          "accuracy": 95,
+          "pp": 35
+        },
+        {
+          "name": "째려보기",
+          "type": "Normal",
+          "category": "Status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 30,
+          "effect": "상대의 방어력을 1단계 낮춘다."
+        },
+        {
+          "name": "불꽃세례",
+          "type": "Fire",
+          "category": "Special",
+          "power": 40,
+          "accuracy": 100,
+          "pp": 25
+        }
+      ]
+    },
+    {
+      "id": 158,
+      "name": "리아코",
+      "type": ["Water"],
+      "level": 10,
+      "stats": {
+        "hp": 30,
+        "attack": 18,
+        "defense": 17,
+        "special_attack": 13,
+        "special_defense": 14,
+        "speed": 13
+      },
+      "moves": [
+        {
+          "name": "할퀴기",
+          "type": "Normal",
+          "category": "Physical",
+          "power": 40,
+          "accuracy": 100,
+          "pp": 35
+        },
+        {
+          "name": "째려보기",
+          "type": "Normal",
+          "category": "Status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 30,
+          "effect": "상대의 방어력을 1단계 낮춘다."
+        },
+        {
+          "name": "물대포",
+          "type": "Water",
+          "category": "Special",
+          "power": 40,
+          "accuracy": 100,
+          "pp": 25
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "피카츄",
+      "type": ["Electric"],
+      "level": 10,
+      "stats": {
+        "hp": 28,
+        "attack": 16,
+        "defense": 12,
+        "special_attack": 15,
+        "special_defense": 15,
+        "speed": 22
+      },
+      "moves": [
+        {
+          "name": "전광석화",
+          "type": "Normal",
+          "category": "Physical",
+          "power": 40,
+          "accuracy": 100,
+          "pp": 30
+        },
+        {
+          "name": "꼬리흔들기",
+          "type": "Normal",
+          "category": "Status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 30,
+          "effect": "상대의 방어력을 1단계 낮춘다."
+        },
+        {
+          "name": "전기쇼크",
+          "type": "Electric",
+          "category": "Special",
+          "power": 40,
+          "accuracy": 100,
+          "pp": 30
+        }
+      ]
+    }
+  ]
+}
