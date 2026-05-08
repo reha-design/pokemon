@@ -26,13 +26,13 @@ sequenceDiagram
     rect rgb(220, 230, 250)
     Note right of S: 2단계: 공격(MOVE) 처리
     S->>P: 각 포켓몬의 스피드 조회 (get_stat)
-    S->>S: 스피드 비교 (Speed * Random 0.9~1.1)
+    S->>S: 스피드 비교 (직접 비교, 동속 시 50% 확률)
     
     loop 각 공격자(Attacker)에 대해 순서대로
         S->>S: 기술 카테고리 확인 (Physical/Special/Status)
         
         alt 공격 기술 (Physical/Special)
-            S->>S: calculate_damage (명중률, 상성, 급소(1.5x), 난수 적용)
+            S->>S: calculate_damage (명중, 상성, 급소(레벨2배/랭크무시), 난수)
             S->>P: 상대 HP 감소 (take_damage)
         else 변화기 (Status)
             S->>P: 상대 능력치 랭크 변화 (apply_stat_change)
