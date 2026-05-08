@@ -99,39 +99,45 @@ def calculate_damage(attacker, defender, move):
         # 변화기는 별도 명중률 체크가 필요할 수 있으나 여기서는 기본 데미지 0 반환
         return 0, 1.0
     
-    # 1. 명중률 체크 (난수 적용)
+    # 1. 명중률 체크
     if random.randint(1, 100) > move.accuracy:
-        return 0, -1.0 # -1.0은 '빗나감'을 의미하는 커스텀 식별자
+        return 0, -1.0
     
-    # 2. 기초 공격력/방어력 결정
+    # 2. 급소 여부 결정 (약 6.25% 확률)
+    is_crit = random.random() < 0.0625
+    
+    # 3. 기초 공격력/방어력 결정 (급소 시 랭크 보정 무시)
     if move.category == "Physical":
-        atk = attacker.get_stat("attack")
-        dfn = defender.get_stat("defense")
+        atk = attacker.stats["attack"] if is_crit else attacker.get_stat("attack")
+        dfn = defender.stats["defense"] if is_crit else defender.get_stat("defense")
     else:
-        atk = attacker.get_stat("special_attack")
-        dfn = defender.get_stat("special_defense")
+        atk = attacker.stats["special_attack"] if is_crit else attacker.get_stat("special_attack")
+        dfn = defender.stats["special_defense"] if is_crit else defender.get_stat("special_defense")
         
-    # 3. 기본 데미지 공식
-    level_factor = (2 * attacker.level / 5) + 2
-    base_damage = (level_factor * move.power * atk / dfn) / 50 + 2
+    # 4. 기본 데미지 공식 (정수 연산 및 절삭 적용)
+    level = attacker.level * 2 if is_crit else attacker.level
+    level_factor = math.floor(2 * level / 5) + 2
     
-    # 4. 보정치 (Modifier)
+    # (LevelFactor * Power * Atk / Dfn) / 50 + 2
+    base_damage = math.floor(math.floor(math.floor(level_factor * move.power * atk / dfn) / 50) + 2)
+    
+    # 5. 보정치 (Modifier)
     # 자속 보정 (STAB)
-    stab = 1.5 if move.type in attacker.types else 1.0
+    if move.type in attacker.types:
+        base_damage = math.floor(base_damage * 1.5)
     
     # 상성 보정 (Type Effectiveness)
     type_mod = get_type_effectiveness(move_type=move.type, target_types=defender.types)
+    base_damage = math.floor(base_damage * type_mod)
     
-    # 급소 보정 (Critical Hit, 약 6.25% 확률)
-    crit_mod = 1.5 if random.random() < 0.0625 else 1.0
+    # 난수 보정 (217~255 / 255)
+    random_val = random.randint(217, 255)
+    final_damage = math.floor(base_damage * random_val / 255)
     
-    # 난수 보정 (0.85 ~ 1.0)
-    random_factor = random.randint(217, 255) / 255
-    
-    final_damage = math.floor(base_damage * stab * type_mod * crit_mod * random_factor)
-    
-    # 급소인 경우 식별을 위해 mod 값에 10을 곱하는 등의 처리 가능하나, 
-    # 여기서는 결과 반환 시 type_mod만 일단 반환 (main.py에서 crit 여부 판단 필요시 로직 확장)
+    # 0이 되지 않도록 보정 (최소 1)
+    if final_damage == 0 and type_mod > 0:
+        final_damage = 1
+        
     return final_damage, type_mod
 
 def load_starters(file_path="starters.json"):

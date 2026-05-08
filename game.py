@@ -138,14 +138,17 @@ async def process_multiplayer_turn(room):
     if actions[p1["id"]]["type"] == "MOVE": move_order.append(p1)
     if actions[p2["id"]]["type"] == "MOVE": move_order.append(p2)
     
-    # 공격자 간 스피드 비교 (난수 포함)
+    # 공격자 간 스피드 비교 (동속일 경우 50% 확률)
     if len(move_order) == 2:
         s1 = p1["team"][p1["active_idx"]].get_stat("speed")
         s2 = p2["team"][p2["active_idx"]].get_stat("speed")
-        v1 = s1 * random.uniform(0.9, 1.1)
-        v2 = s2 * random.uniform(0.9, 1.1)
-        if v2 > v1: move_order = [p2, p1]
-        else: move_order = [p1, p2]
+        if s1 > s2:
+            move_order = [p1, p2]
+        elif s2 > s1:
+            move_order = [p2, p1]
+        else:
+            # 스피드 타이
+            move_order = random.sample([p1, p2], 2)
 
     for attacker_p in move_order:
         defender_p = p2 if attacker_p == p1 else p1
