@@ -58,5 +58,6 @@ uv run main.py
 
 ## 📄 문서 (Documentation)
 추가적인 상세 내용은 `docs/markdown/` 폴더 내의 문서를 참고하세요.
-- `battle_flow.md`: 전투 로직 흐름도.
-- `pokemon_gen2_battle_stats.md`: 2세대 전투 시스템 조사 결과.
+- `battle_flow.md`: 전투 로직 흐름도 (상태 전이 및 프로세스).
+- `pokemon_gen2_battle_stats.md`: 2세대 전투 시스템 조사 결과 및 통계 데이터.
+- `sample.md`: 2세대 전투 시스템 상세 로직 (DV, 데미지 공식, 상태 이상 등).
