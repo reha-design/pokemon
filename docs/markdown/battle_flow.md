@@ -6,36 +6,47 @@
 
 ```mermaid
 sequenceDiagram
-    participant C as Client (Browser)
-    participant S as Server (FastAPI)
+    participant C1 as Client 1 (Player)
+    participant C2 as Client 2 (Opponent)
+    participant S as Server (FastAPI + Game Room)
     participant P as Pokemon Object
 
-    C->>S: POST /battle/action (선택한 기술)
+    C1->>S: WebSocket: BATTLE_ACTION (MOVE/SWAP)
+    C2->>S: WebSocket: BATTLE_ACTION (MOVE/SWAP)
+    
     activate S
-    S->>P: 각 포켓몬의 스피드 조회 (get_stat)
-    P-->>S: 스피드 값 반환
-    S->>S: 선공/후공 결정 (Turn Order)
+    Note over S: 양측 입력 완료 시 턴 처리 시작 (check_and_process_turn)
+    
+    rect rgb(240, 240, 240)
+    Note right of S: 1단계: 교체(SWAP) 처리
+    S->>P: 랭크 초기화 (reset_stages)
+    S->>S: active_idx 변경 및 이벤트 기록
+    end
 
-    loop 각 행동자(Attacker)에 대해 순서대로
+    rect rgb(220, 230, 250)
+    Note right of S: 2단계: 공격(MOVE) 처리
+    S->>P: 각 포켓몬의 스피드 조회 (get_stat)
+    S->>S: 스피드 비교 (Speed * Random 0.9~1.1)
+    
+    loop 각 공격자(Attacker)에 대해 순서대로
         S->>S: 기술 카테고리 확인 (Physical/Special/Status)
         
         alt 공격 기술 (Physical/Special)
-            S->>S: calculate_damage 호출
+            S->>S: calculate_damage (명중률, 상성, 급소(1.5x), 난수 적용)
             S->>P: 상대 HP 감소 (take_damage)
-            P-->>S: HP 갱신 완료
         else 변화기 (Status)
             S->>P: 상대 능력치 랭크 변화 (apply_stat_change)
-            P-->>S: 변화 성공 여부 반환
         end
-        
-        S->>S: 이벤트 그룹 생성 (logs, player_hp, enemy_hp)
         
         alt 상대가 쓰러짐 (is_fainted)
-            S->>S: 쓰러짐 이벤트 추가 및 루프 종료
+            S->>S: 빈사 이벤트 추가 및 공격 루프 종료 (break)
         end
     end
+    end
 
-    S-->>C: events 리스트 및 종료 여부 반환
+    S->>S: 최종 승패 체크 (any alive team members)
+    S-->>C1: WebSocket: TURN_RESULT / BATTLE_END 브로드캐스트
+    S-->>C2: WebSocket: TURN_RESULT / BATTLE_END 브로드캐스트
     deactivate S
 ```
 
