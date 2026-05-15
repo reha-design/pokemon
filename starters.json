@@ -1,168 +1,605 @@
-{
-  "starters": [
-    {
-      "id": 152,
-      "name": "치코리타",
-      "type": ["Grass"],
-      "level": 10,
-      "stats": {
-        "hp": 29,
-        "attack": 14,
-        "defense": 18,
-        "special_attack": 14,
-        "special_defense": 18,
-        "speed": 14
-      },
-      "moves": [
-        {
-          "name": "몸통박치기",
-          "type": "Normal",
-          "category": "Physical",
-          "power": 35,
-          "accuracy": 95,
-          "pp": 35
-        },
-        {
-          "name": "울음소리",
-          "type": "Normal",
-          "category": "Status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 40,
-          "effect": "상대의 공격력을 1단계 낮춘다."
-        },
-        {
-          "name": "잎날가르기",
-          "type": "Grass",
-          "category": "Special",
-          "power": 55,
-          "accuracy": 95,
-          "pp": 25
-        }
-      ]
-    },
-    {
-      "id": 155,
-      "name": "브케인",
-      "type": ["Fire"],
-      "level": 10,
-      "stats": {
-        "hp": 27,
-        "attack": 15,
-        "defense": 13,
-        "special_attack": 17,
-        "special_defense": 15,
-        "speed": 18
-      },
-      "moves": [
-        {
-          "name": "몸통박치기",
-          "type": "Normal",
-          "category": "Physical",
-          "power": 35,
-          "accuracy": 95,
-          "pp": 35
-        },
-        {
-          "name": "째려보기",
-          "type": "Normal",
-          "category": "Status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 30,
-          "effect": "상대의 방어력을 1단계 낮춘다."
-        },
-        {
-          "name": "불꽃세례",
-          "type": "Fire",
-          "category": "Special",
-          "power": 40,
-          "accuracy": 100,
-          "pp": 25
-        }
-      ]
-    },
-    {
-      "id": 158,
-      "name": "리아코",
-      "type": ["Water"],
-      "level": 10,
-      "stats": {
-        "hp": 30,
-        "attack": 18,
-        "defense": 17,
-        "special_attack": 13,
-        "special_defense": 14,
-        "speed": 13
-      },
-      "moves": [
-        {
-          "name": "할퀴기",
-          "type": "Normal",
-          "category": "Physical",
-          "power": 40,
-          "accuracy": 100,
-          "pp": 35
-        },
-        {
-          "name": "째려보기",
-          "type": "Normal",
-          "category": "Status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 30,
-          "effect": "상대의 방어력을 1단계 낮춘다."
-        },
-        {
-          "name": "물대포",
-          "type": "Water",
-          "category": "Special",
-          "power": 40,
-          "accuracy": 100,
-          "pp": 25
-        }
-      ]
-    },
-    {
-      "id": 25,
-      "name": "피카츄",
-      "type": ["Electric"],
-      "level": 10,
-      "stats": {
-        "hp": 28,
-        "attack": 16,
-        "defense": 12,
-        "special_attack": 15,
-        "special_defense": 15,
-        "speed": 22
-      },
-      "moves": [
-        {
-          "name": "전광석화",
-          "type": "Normal",
-          "category": "Physical",
-          "power": 40,
-          "accuracy": 100,
-          "pp": 30
-        },
-        {
-          "name": "꼬리흔들기",
-          "type": "Normal",
-          "category": "Status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 30,
-          "effect": "상대의 방어력을 1단계 낮춘다."
-        },
-        {
-          "name": "전기쇼크",
-          "type": "Electric",
-          "category": "Special",
-          "power": 40,
-          "accuracy": 100,
-          "pp": 30
-        }
-      ]
-    }
-  ]
+﻿{
+    "starters":  [
+                     {
+                         "id":  1,
+                         "name":  "이상해씨",
+                         "type":  [
+                                      "Grass",
+                                      "Poison"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  105,
+                                       "attack":  54,
+                                       "defense":  54,
+                                       "special_attack":  70,
+                                       "special_defense":  70,
+                                       "speed":  50
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "덩굴채찍",
+                                           "accuracy":  100,
+                                           "type":  "Grass",
+                                           "power":  35,
+                                           "category":  "Special",
+                                           "pp":  10
+                                       },
+                                       {
+                                           "name":  "돌진",
+                                           "accuracy":  85,
+                                           "type":  "Normal",
+                                           "power":  90,
+                                           "category":  "Physical",
+                                           "pp":  20
+                                       },
+                                       {
+                                           "name":  "잎날가르기",
+                                           "accuracy":  95,
+                                           "type":  "Grass",
+                                           "power":  55,
+                                           "category":  "Special",
+                                           "pp":  25
+                                       },
+                                       {
+                                           "name":  "솔라빔",
+                                           "accuracy":  100,
+                                           "type":  "Grass",
+                                           "power":  120,
+                                           "category":  "Special",
+                                           "pp":  10
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  4,
+                         "name":  "파이리",
+                         "type":  [
+                                      "Fire"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  99,
+                                       "attack":  57,
+                                       "defense":  48,
+                                       "special_attack":  65,
+                                       "special_defense":  55,
+                                       "speed":  70
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "불꽃엄니",
+                                           "accuracy":  95,
+                                           "type":  "Fire",
+                                           "power":  65,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "베어가르기",
+                                           "accuracy":  100,
+                                           "type":  "Normal",
+                                           "power":  70,
+                                           "category":  "Physical",
+                                           "pp":  20
+                                       },
+                                       {
+                                           "name":  "화염방사",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  95,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "플레어드라이브",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  120,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  7,
+                         "name":  "꼬부기",
+                         "type":  [
+                                      "Water"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  104,
+                                       "attack":  53,
+                                       "defense":  70,
+                                       "special_attack":  55,
+                                       "special_defense":  69,
+                                       "speed":  48
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "물기",
+                                           "accuracy":  100,
+                                           "type":  "Dark",
+                                           "power":  60,
+                                           "category":  "Physical",
+                                           "pp":  25
+                                       },
+                                       {
+                                           "name":  "아쿠아테일",
+                                           "accuracy":  90,
+                                           "type":  "Water",
+                                           "power":  90,
+                                           "category":  "Physical",
+                                           "pp":  10
+                                       },
+                                       {
+                                           "name":  "로케트박치기",
+                                           "accuracy":  100,
+                                           "type":  "Normal",
+                                           "power":  100,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "하이드로펌프",
+                                           "accuracy":  80,
+                                           "type":  "Water",
+                                           "power":  120,
+                                           "category":  "Special",
+                                           "pp":  5
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  152,
+                         "name":  "치코리타",
+                         "type":  [
+                                      "Grass"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  105,
+                                       "attack":  54,
+                                       "defense":  70,
+                                       "special_attack":  54,
+                                       "special_defense":  70,
+                                       "speed":  50
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "잎날가르기",
+                                           "accuracy":  95,
+                                           "type":  "Grass",
+                                           "power":  55,
+                                           "category":  "Special",
+                                           "pp":  25
+                                       },
+                                       {
+                                           "name":  "매지컬리프",
+                                           "accuracy":  100,
+                                           "type":  "Grass",
+                                           "power":  60,
+                                           "category":  "Special",
+                                           "pp":  20
+                                       },
+                                       {
+                                           "name":  "누르기",
+                                           "accuracy":  100,
+                                           "type":  "Normal",
+                                           "power":  85,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "솔라빔",
+                                           "accuracy":  100,
+                                           "type":  "Grass",
+                                           "power":  120,
+                                           "category":  "Special",
+                                           "pp":  10
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  155,
+                         "name":  "브케인",
+                         "type":  [
+                                      "Fire"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  99,
+                                       "attack":  57,
+                                       "defense":  48,
+                                       "special_attack":  65,
+                                       "special_defense":  55,
+                                       "speed":  70
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "전광석화",
+                                           "accuracy":  100,
+                                           "type":  "Normal",
+                                           "power":  40,
+                                           "category":  "Physical",
+                                           "pp":  30
+                                       },
+                                       {
+                                           "name":  "화염자동차",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  60,
+                                           "category":  "Physical",
+                                           "pp":  25
+                                       },
+                                       {
+                                           "name":  "분연",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  80,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "화염방사",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  95,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  158,
+                         "name":  "리아코",
+                         "type":  [
+                                      "Water"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  110,
+                                       "attack":  70,
+                                       "defense":  69,
+                                       "special_attack":  49,
+                                       "special_defense":  53,
+                                       "speed":  48
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "얼음엄니",
+                                           "accuracy":  95,
+                                           "type":  "Ice",
+                                           "power":  65,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "깨물어부수기",
+                                           "accuracy":  100,
+                                           "type":  "Dark",
+                                           "power":  80,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "아쿠아테일",
+                                           "accuracy":  90,
+                                           "type":  "Water",
+                                           "power":  90,
+                                           "category":  "Physical",
+                                           "pp":  10
+                                       },
+                                       {
+                                           "name":  "하이드로펌프",
+                                           "accuracy":  80,
+                                           "type":  "Water",
+                                           "power":  120,
+                                           "category":  "Special",
+                                           "pp":  5
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  252,
+                         "name":  "나무지기",
+                         "type":  [
+                                      "Grass"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  100,
+                                       "attack":  50,
+                                       "defense":  40,
+                                       "special_attack":  70,
+                                       "special_defense":  60,
+                                       "speed":  75
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "전광석화",
+                                           "accuracy":  100,
+                                           "type":  "Normal",
+                                           "power":  40,
+                                           "category":  "Physical",
+                                           "pp":  30
+                                       },
+                                       {
+                                           "name":  "메가드레인",
+                                           "accuracy":  100,
+                                           "type":  "Grass",
+                                           "power":  40,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "힘껏치기",
+                                           "accuracy":  75,
+                                           "type":  "Normal",
+                                           "power":  80,
+                                           "category":  "Physical",
+                                           "pp":  20
+                                       },
+                                       {
+                                           "name":  "기가드레인",
+                                           "accuracy":  100,
+                                           "type":  "Grass",
+                                           "power":  60,
+                                           "category":  "Special",
+                                           "pp":  10
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  255,
+                         "name":  "아차모",
+                         "type":  [
+                                      "Fire"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  105,
+                                       "attack":  65,
+                                       "defense":  45,
+                                       "special_attack":  75,
+                                       "special_defense":  55,
+                                       "speed":  50
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "쪼기",
+                                           "accuracy":  100,
+                                           "type":  "Flying",
+                                           "power":  35,
+                                           "category":  "Physical",
+                                           "pp":  35
+                                       },
+                                       {
+                                           "name":  "전광석화",
+                                           "accuracy":  100,
+                                           "type":  "Normal",
+                                           "power":  40,
+                                           "category":  "Physical",
+                                           "pp":  30
+                                       },
+                                       {
+                                           "name":  "불꽃소용돌이",
+                                           "accuracy":  70,
+                                           "type":  "Fire",
+                                           "power":  15,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "화염방사",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  95,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  258,
+                         "name":  "물짱이",
+                         "type":  [
+                                      "Water"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  110,
+                                       "attack":  75,
+                                       "defense":  55,
+                                       "special_attack":  55,
+                                       "special_defense":  55,
+                                       "speed":  45
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "진흙뿌리기",
+                                           "accuracy":  100,
+                                           "type":  "Ground",
+                                           "power":  20,
+                                           "category":  "Special",
+                                           "pp":  10
+                                       },
+                                       {
+                                           "name":  "물대포",
+                                           "accuracy":  100,
+                                           "type":  "Water",
+                                           "power":  40,
+                                           "category":  "Special",
+                                           "pp":  25
+                                       },
+                                       {
+                                           "name":  "돌진",
+                                           "accuracy":  85,
+                                           "type":  "Normal",
+                                           "power":  90,
+                                           "category":  "Physical",
+                                           "pp":  20
+                                       },
+                                       {
+                                           "name":  "하이드로펌프",
+                                           "accuracy":  80,
+                                           "type":  "Water",
+                                           "power":  120,
+                                           "category":  "Special",
+                                           "pp":  5
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  387,
+                         "name":  "모부기",
+                         "type":  [
+                                      "Grass"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  115,
+                                       "attack":  73,
+                                       "defense":  69,
+                                       "special_attack":  50,
+                                       "special_defense":  60,
+                                       "speed":  36
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "물기",
+                                           "accuracy":  100,
+                                           "type":  "Dark",
+                                           "power":  60,
+                                           "category":  "Physical",
+                                           "pp":  25
+                                       },
+                                       {
+                                           "name":  "메가드레인",
+                                           "accuracy":  100,
+                                           "type":  "Grass",
+                                           "power":  40,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "깨물어부수기",
+                                           "accuracy":  100,
+                                           "type":  "Dark",
+                                           "power":  80,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "리프스톰",
+                                           "accuracy":  90,
+                                           "type":  "Grass",
+                                           "power":  140,
+                                           "category":  "Special",
+                                           "pp":  5
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  390,
+                         "name":  "불꽃숭이",
+                         "type":  [
+                                      "Fire"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  104,
+                                       "attack":  63,
+                                       "defense":  49,
+                                       "special_attack":  63,
+                                       "special_defense":  49,
+                                       "speed":  66
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "마구할퀴기",
+                                           "accuracy":  80,
+                                           "type":  "Normal",
+                                           "power":  18,
+                                           "category":  "Physical",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "화염자동차",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  60,
+                                           "category":  "Physical",
+                                           "pp":  25
+                                       },
+                                       {
+                                           "name":  "불꽃소용돌이",
+                                           "accuracy":  70,
+                                           "type":  "Fire",
+                                           "power":  15,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       },
+                                       {
+                                           "name":  "화염방사",
+                                           "accuracy":  100,
+                                           "type":  "Fire",
+                                           "power":  95,
+                                           "category":  "Special",
+                                           "pp":  15
+                                       }
+                                   ]
+                     },
+                     {
+                         "id":  393,
+                         "name":  "팽도리",
+                         "type":  [
+                                      "Water"
+                                  ],
+                         "level":  50,
+                         "stats":  {
+                                       "hp":  113,
+                                       "attack":  56,
+                                       "defense":  58,
+                                       "special_attack":  66,
+                                       "special_defense":  61,
+                                       "speed":  45
+                                   },
+                         "moves":  [
+                                       {
+                                           "name":  "거품광선",
+                                           "accuracy":  100,
+                                           "type":  "Water",
+                                           "power":  65,
+                                           "category":  "Special",
+                                           "pp":  20
+                                       },
+                                       {
+                                           "name":  "소금물",
+                                           "accuracy":  100,
+                                           "type":  "Water",
+                                           "power":  65,
+                                           "category":  "Special",
+                                           "pp":  10
+                                       },
+                                       {
+                                           "name":  "회전부리",
+                                           "accuracy":  100,
+                                           "type":  "Flying",
+                                           "power":  80,
+                                           "category":  "Physical",
+                                           "pp":  20
+                                       },
+                                       {
+                                           "name":  "하이드로펌프",
+                                           "accuracy":  80,
+                                           "type":  "Water",
+                                           "power":  120,
+                                           "category":  "Special",
+                                           "pp":  5
+                                       }
+                                   ]
+                     }
+                 ]
 }

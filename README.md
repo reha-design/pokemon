@@ -61,3 +61,16 @@ uv run main.py
 - `battle_flow.md`: 전투 로직 흐름도 (상태 전이 및 프로세스).
 - `pokemon_gen2_battle_stats.md`: 2세대 전투 시스템 조사 결과 및 통계 데이터.
 - `sample.md`: 2세대 전투 시스템 상세 로직 (DV, 데미지 공식, 상태 이상 등).
+
+## 🛠 주요 기능
+- **2세대 스텟 시스템**: DV/Stat Exp를 제외한 종족값 기반 능력치 계산.
+- **데미지 공식**: 자속 보정(STAB) 및 2세대 타입 상성표 적용.
+- **실시간 전투 로그**: 타이핑 효과가 적용된 전투 메시지 출력.
+- **애니메이션**: HP 바 변화 및 데미지 피격 효과(예정).
+
+## 📂 파일 구조
+- `main.py`: FastAPI 기반의 전투 API 서버.
+- `pokemon.py`: 포켓몬 클래스 및 데미지 계산 로직.
+- `starters.json`: 1~4세대 스타팅 포켓몬 미진화체 12마리 데이터.
+- `index.html` / `style.css` / `script.js`: 웹 프론트엔드 인터페이스.
+- `pokemon_gen2_battle_stats.md`: 참고용 2세대 전투 시스템 조사 문서.

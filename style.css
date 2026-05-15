@@ -42,6 +42,19 @@ body {
     padding: 10px;
 }
 
+.weather-status {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    padding: 4px 10px;
+    background: white;
+    border: 2px solid var(--border-color);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
 #enemy-status {
     top: 20px;
     left: 20px;
@@ -83,6 +96,21 @@ body {
     background-position: center;
 }
 
+.sprite-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--border-color);
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #222;
+    box-shadow: inset -8px -10px 0 rgba(0, 0, 0, 0.15);
+}
+
 #enemy-sprite {
     top: 40px;
     right: 40px;
@@ -91,6 +119,187 @@ body {
 #player-sprite {
     bottom: 20px;
     left: 40px;
+}
+
+@keyframes player-tackle {
+    0% { transform: translate(0, 0); }
+    35% { transform: translate(72px, -34px); }
+    55% { transform: translate(54px, -24px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes enemy-tackle {
+    0% { transform: translate(0, 0); }
+    35% { transform: translate(-72px, 34px); }
+    55% { transform: translate(-54px, 24px); }
+    100% { transform: translate(0, 0); }
+}
+
+.tackle-player {
+    animation: player-tackle 0.45s ease-in-out;
+}
+
+.tackle-enemy {
+    animation: enemy-tackle 0.45s ease-in-out;
+}
+
+.effect-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.battle-effect {
+    position: absolute;
+    pointer-events: none;
+}
+
+.effect-player {
+    left: 120px;
+    bottom: 82px;
+}
+
+.effect-enemy {
+    right: 120px;
+    top: 92px;
+}
+
+.leer-effect {
+    width: 150px;
+    height: 42px;
+    transform-origin: center;
+    animation: leer-flash 0.75s ease-out forwards;
+}
+
+.leer-effect.effect-player {
+    transform: rotate(-24deg);
+}
+
+.leer-effect.effect-enemy {
+    transform: rotate(156deg);
+}
+
+.leer-effect::before,
+.leer-effect::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 150px;
+    height: 10px;
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0), #ff2d2d 35%, #fff 52%, rgba(255, 0, 0, 0));
+    box-shadow: 0 0 10px #ff3030;
+}
+
+.leer-effect::before {
+    top: 6px;
+}
+
+.leer-effect::after {
+    bottom: 6px;
+}
+
+@keyframes leer-flash {
+    0% { opacity: 0; scale: 0.6; }
+    25% { opacity: 1; scale: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; translate: 18px -6px; }
+}
+
+.growl-effect {
+    width: 40px;
+    height: 40px;
+}
+
+.growl-effect::before,
+.growl-effect::after,
+.growl-effect .wave {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 4px solid #7c5cff;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    animation: growl-wave 0.9s ease-out forwards;
+}
+
+.growl-effect::after {
+    animation-delay: 0.14s;
+}
+
+.growl-effect .wave {
+    animation-delay: 0.28s;
+}
+
+.growl-effect.effect-player {
+    transform: rotate(-35deg);
+}
+
+.growl-effect.effect-enemy {
+    transform: rotate(145deg);
+}
+
+@keyframes growl-wave {
+    0% { opacity: 0; scale: 0.5; }
+    30% { opacity: 0.9; }
+    100% { opacity: 0; scale: 4.2; }
+}
+
+.hydro-pump-effect {
+    width: 330px;
+    height: 46px;
+    transform-origin: left center;
+    animation: hydro-fade 0.8s ease-out forwards;
+}
+
+.hydro-pump-effect.effect-player {
+    left: 145px;
+    bottom: 130px;
+    transform: rotate(-23deg);
+}
+
+.hydro-pump-effect.effect-enemy {
+    right: 145px;
+    top: 130px;
+    transform-origin: right center;
+    transform: rotate(157deg);
+}
+
+.hydro-pump-effect::before {
+    content: "";
+    position: absolute;
+    inset: 12px 0;
+    background:
+        repeating-linear-gradient(90deg, #d8fbff 0 14px, #5ccfff 14px 28px, #087ec7 28px 42px);
+    border-radius: 999px;
+    box-shadow: 0 0 12px #55d7ff;
+    animation: hydro-stream 0.22s linear infinite;
+}
+
+.hydro-pump-effect::after {
+    content: "";
+    position: absolute;
+    right: -14px;
+    top: 4px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f3ffff 0 20%, #5fd7ff 40%, rgba(10, 135, 210, 0) 72%);
+}
+
+@keyframes hydro-stream {
+    from { background-position-x: 0; }
+    to { background-position-x: 42px; }
+}
+
+@keyframes hydro-fade {
+    0% { opacity: 0; scale: 0.6 0.8; }
+    15% { opacity: 1; scale: 1 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; scale: 1.05 0.9; }
 }
 
 /* UI Area */
@@ -129,6 +338,104 @@ body {
 
 .menu-btn:hover {
     background-color: #eee;
+}
+
+.audio-permission {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(240, 240, 240, 0.96);
+}
+
+.audio-panel {
+    width: min(420px, 86%);
+    background: white;
+    border: 4px solid var(--border-color);
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.audio-panel h2 {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+}
+
+.audio-panel p {
+    margin: 0 0 16px;
+    line-height: 1.4;
+}
+
+.audio-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.notice-modal {
+    position: absolute;
+    inset: 0;
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(240, 240, 240, 0.35);
+}
+
+.notice-panel {
+    min-width: 300px;
+    max-width: 82%;
+    background: white;
+    border: 4px solid var(--border-color);
+    padding: 22px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.modal {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 14px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.modal-panel {
+    width: 320px;
+    background: white;
+    border: 4px solid var(--border-color);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.modal-title {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.move-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+}
+
+.move-btn {
+    min-height: 52px;
+}
+
+.modal-close {
+    width: 100%;
+    margin-top: 8px;
 }
 
 .hidden {
@@ -240,17 +547,37 @@ body {
 }
 
 .starter-choice {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 10px;
     margin-top: 20px;
+    width: min(520px, 90%);
 }
 
 .starter-btn {
-    padding: 15px;
+    min-height: 48px;
+    padding: 10px;
     border: 2px solid var(--border-color);
     background: white;
     cursor: pointer;
     text-align: center;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.starter-btn.grass {
+    border-color: #3f8f4b;
+    background: #e5f6e8;
+}
+
+.starter-btn.fire {
+    border-color: #ba5732;
+    background: #fde9de;
+}
+
+.starter-btn.water {
+    border-color: #3778b4;
+    background: #e4f1fb;
 }
 
 .starter-btn img {

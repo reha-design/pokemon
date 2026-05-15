@@ -21,6 +21,7 @@ class Pokemon:
         self.current_hp = self.stats['hp']
         self.max_hp = self.stats['hp']
         self.moves = [Move(m) for m in data['moves']]
+        self.volatile = {}
         
         # 랭크 보정 (-6 ~ +6)
         self.stages = {
@@ -44,8 +45,15 @@ class Pokemon:
         return math.floor(base_stat * multiplier)
 
     def take_damage(self, damage):
+        damage = max(0, damage)
         self.current_hp = max(0, self.current_hp - damage)
         return self.current_hp == 0
+
+    def heal(self, amount):
+        amount = max(0, amount)
+        before = self.current_hp
+        self.current_hp = min(self.max_hp, self.current_hp + amount)
+        return self.current_hp - before
 
     def is_fainted(self):
         return self.current_hp <= 0
@@ -65,6 +73,9 @@ class Pokemon:
     def reset_stages(self):
         for stat in self.stages:
             self.stages[stat] = 0
+
+    def clear_volatile(self):
+        self.volatile = {}
 
 # 2세대 타입 상성표 (공격 타입: {방어 타입: 배율})
 TYPE_CHART = {
@@ -94,7 +105,27 @@ def get_type_effectiveness(move_type, target_types):
         effectiveness *= mod
     return effectiveness
 
-def calculate_damage(attacker, defender, move):
+def get_weather_modifier(move, weather):
+    weather = weather or "clear"
+    modifier = 1.0
+
+    if weather == "sun":
+        if move.type == "Fire":
+            modifier *= 1.5
+        elif move.type == "Water":
+            modifier *= 0.5
+    elif weather == "rain":
+        if move.type == "Water":
+            modifier *= 1.5
+        elif move.type == "Fire":
+            modifier *= 0.5
+
+    if move.name == "솔라빔" and weather in ["rain", "sandstorm", "hail"]:
+        modifier *= 0.5
+
+    return modifier
+
+def calculate_damage(attacker, defender, move, weather="clear", power_override=None):
     if move.category == "Status":
         # 변화기는 별도 명중률 체크가 필요할 수 있으나 여기서는 기본 데미지 0 반환
         return 0, 1.0
@@ -117,9 +148,10 @@ def calculate_damage(attacker, defender, move):
     # 4. 기본 데미지 공식 (정수 연산 및 절삭 적용)
     level = attacker.level * 2 if is_crit else attacker.level
     level_factor = math.floor(2 * level / 5) + 2
+    power = power_override if power_override is not None else move.power
     
     # (LevelFactor * Power * Atk / Dfn) / 50 + 2
-    base_damage = math.floor(math.floor(math.floor(level_factor * move.power * atk / dfn) / 50) + 2)
+    base_damage = math.floor(math.floor(math.floor(level_factor * power * atk / dfn) / 50) + 2)
     
     # 5. 보정치 (Modifier)
     # 자속 보정 (STAB)
@@ -137,11 +169,17 @@ def calculate_damage(attacker, defender, move):
     # 0이 되지 않도록 보정 (최소 1)
     if final_damage == 0 and type_mod > 0:
         final_damage = 1
-        
+
+    # 날씨 보정
+    weather_mod = get_weather_modifier(move, weather)
+    final_damage = math.floor(final_damage * weather_mod)
+    if final_damage == 0 and type_mod > 0:
+        final_damage = 1
+
     return final_damage, type_mod
 
 def load_starters(file_path="starters.json"):
-    with open(file_path, "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8-sig") as f:
         data = json.load(f)
     return {p['name']: Pokemon(p) for p in data['starters']}
 

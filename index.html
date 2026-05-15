@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>포켓몬 2세대 전투 시뮬레이터</title>
+    <title>포켓몬 스타팅 전투 시뮬레이터</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game-container">
+        <div id="audio-permission" class="audio-permission">
+            <div class="audio-panel">
+                <h2>소리 알림</h2>
+                <p>전투 시작 시 배경음악이 재생됩니다.</p>
+                <div class="audio-actions">
+                    <button class="menu-btn" onclick="enableAudio()">소리 켜기</button>
+                    <button class="menu-btn" onclick="skipAudioPermission()">소리 없이 시작</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="notice-modal" class="notice-modal hidden">
+            <div id="notice-message" class="notice-panel"></div>
+        </div>
+
         <!-- 시작 화면 (스타팅 선택) -->
         <div id="start-screen" class="screen">
             <h1>팀을 구성할 포켓몬 3마리를 선택하세요!</h1>
@@ -15,18 +30,18 @@
                 선택된 팀: <span id="selected-team-list">없음</span> (0/3)
             </div>
             <div class="starter-choice">
-                <button id="btn-치코리타" class="starter-btn" onclick="pickStarter('치코리타')">
-                    치코리타
-                </button>
-                <button id="btn-브케인" class="starter-btn" onclick="pickStarter('브케인')">
-                    브케인
-                </button>
-                <button id="btn-리아코" class="starter-btn" onclick="pickStarter('리아코')">
-                    리아코
-                </button>
-                <button id="btn-피카츄" class="starter-btn" onclick="pickStarter('피카츄')">
-                    피카츄
-                </button>
+                <button id="btn-이상해씨" class="starter-btn grass" onclick="pickStarter('이상해씨')">이상해씨</button>
+                <button id="btn-파이리" class="starter-btn fire" onclick="pickStarter('파이리')">파이리</button>
+                <button id="btn-꼬부기" class="starter-btn water" onclick="pickStarter('꼬부기')">꼬부기</button>
+                <button id="btn-치코리타" class="starter-btn grass" onclick="pickStarter('치코리타')">치코리타</button>
+                <button id="btn-브케인" class="starter-btn fire" onclick="pickStarter('브케인')">브케인</button>
+                <button id="btn-리아코" class="starter-btn water" onclick="pickStarter('리아코')">리아코</button>
+                <button id="btn-나무지기" class="starter-btn grass" onclick="pickStarter('나무지기')">나무지기</button>
+                <button id="btn-아차모" class="starter-btn fire" onclick="pickStarter('아차모')">아차모</button>
+                <button id="btn-물짱이" class="starter-btn water" onclick="pickStarter('물짱이')">물짱이</button>
+                <button id="btn-모부기" class="starter-btn grass" onclick="pickStarter('모부기')">모부기</button>
+                <button id="btn-불꽃숭이" class="starter-btn fire" onclick="pickStarter('불꽃숭이')">불꽃숭이</button>
+                <button id="btn-팽도리" class="starter-btn water" onclick="pickStarter('팽도리')">팽도리</button>
             </div>
         </div>
 
@@ -54,6 +69,8 @@
 
         <!-- 전투 장면 -->
         <div class="battle-scene">
+            <div id="weather-status" class="weather-status hidden">날씨: 맑음</div>
+
             <!-- 적 상태 -->
             <div id="enemy-status" class="status-box">
                 <div class="name-lv">
@@ -84,6 +101,8 @@
 
             <!-- 플레이어 스프라이트 -->
             <div id="player-sprite" class="sprite"></div>
+
+            <div id="effect-layer" class="effect-layer"></div>
         </div>
 
         <!-- 하단 UI 영역 -->
@@ -92,11 +111,20 @@
                 세상을 구하러 떠나볼까요?
             </div>
             <div id="menu-box" class="hidden">
-                <!-- 기술 버튼들이 여기에 동적으로 생성됨 -->
+                <!-- 전투 기본 메뉴가 여기에 표시됨 -->
+            </div>
+        </div>
+
+        <!-- 기술 선택 모달 -->
+        <div id="move-modal" class="modal hidden">
+            <div class="modal-panel">
+                <div class="modal-title">기술을 선택하세요</div>
+                <div id="move-list" class="move-list"></div>
+                <button class="menu-btn modal-close" onclick="closeMoveModal()">뒤로</button>
             </div>
         </div>
     </div>
 
-    <script type="module" src="js/main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
